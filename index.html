@@ -4,69 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Road Wala Radio</title>
+<meta name="description" content="Windows down. Music up. Road Wala Radio.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="scene">
-  <div class="sky"></div>
-  <div class="sun"></div>
-  <div class="mountains"></div>
-  <div class="ocean"></div>
+<main class="hero">
+  <img class="hero-image" src="./assets/road-wala-radio-hero.png" alt="Three friends driving beside the ocean at sunset">
 
-  <div class="road">
-    <div class="road-lines"></div>
-    <div class="car-wrap">
-      <img src="./assets/friends-coastal-highway.png" alt="Three friends driving on a coastal highway">
-    </div>
-  </div>
+  <div class="play-area">
+    <button id="playButton" class="play-button" aria-label="Play Khaabon Ke Parinday">
+      <span id="playIcon">▶</span>
+    </button>
+    <div class="play-label" id="playLabel">PLAY THE SONG</div>
 
-  <div class="topbar">
-    <div class="brand">ROAD WALA<br><span>RADIO</span></div>
-    <div class="caption">THREE FRIENDS · ONE ROAD · NO PLAN</div>
-  </div>
-
-  <div class="intro">
-    <p>THE LONG WAY HOME</p>
-    <h1>Windows down.<br>Music up.</h1>
-    <span>Some roads become memories.</span>
-  </div>
-
-  <button class="audio-button" id="audioButton" aria-label="Open audio menu">
-    <span class="speaker">♪</span>
-    <span>▶ PLAY THE SONG</span>
-  </button>
-
-  <section class="audio-panel" id="audioPanel" aria-hidden="true">
-    <div class="panel-head">
-      <div>
-        <small>ROAD RADIO 001</small>
-        <h2>Khaabon Ke Parinday</h2>
-        <p>Mohit Chauhan · Alyssa Mendonsa</p>
+    <div class="player" id="player">
+      <div class="song">
+        <div class="song-title">Khaabon Ke Parinday</div>
+        <div class="song-artist">Mohit Chauhan · Alyssa Mendonsa</div>
       </div>
-      <button id="closeAudio">×</button>
-    </div>
-
-    <div class="art">
-      <img src="./assets/friends-coastal-highway.png" alt="">
-    </div>
-
-    <audio id="audio" preload="auto" playsinline>
-      <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="player">
-      <button id="play" class="play">▶</button>
-      <div class="trackbar">
-        <input id="seek" type="range" min="0" max="100" value="0">
-        <div class="times"><span id="current">0:00</span><span id="duration">0:00</span></div>
+      <div class="controls">
+        <button id="muteButton" aria-label="Mute or unmute">🔊</button>
+        <input id="progress" type="range" min="0" max="100" value="0" aria-label="Song progress">
+        <span id="time">0:00</span>
       </div>
-      <button id="mute">🔊</button>
+      <div class="status" id="status">PRESS PLAY TO START</div>
     </div>
-    <div id="status">PRESS PLAY TO START</div>
-  </section>
+  </div>
 
-  <div class="hint"></div>
+  <audio id="audio" preload="auto" playsinline>
+    <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
+  </audio>
 </main>
+
 <script src="script.js"></script>
 </body>
 </html>

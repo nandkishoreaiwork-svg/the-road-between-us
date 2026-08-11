@@ -1,29 +1,26 @@
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#071617;color:#f7ecd8;font-family:Arial,sans-serif}
-body{touch-action:manipulation}
-.scene{position:relative;width:100vw;height:100vh;overflow:hidden;background:#8ea5a0}
-.sky{position:absolute;inset:0;background:linear-gradient(180deg,#678b94 0%,#9bb0a7 39%,#e7bf79 76%,#d58d5d 100%)}
-.sun{position:absolute;width:clamp(90px,12vw,180px);height:clamp(90px,12vw,180px);right:14%;top:11%;border-radius:50%;background:#ffe3aa;box-shadow:0 0 110px 25px #ffd48a88}
-.ocean{position:absolute;left:0;right:0;bottom:27%;height:35%;background:linear-gradient(180deg,#416f79,#27525b 75%);clip-path:polygon(0 22%,100% 4%,100% 100%,0 100%);opacity:.95}
-.ocean:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(175deg,#b6d3ce22 0 2px,transparent 2px 18px);animation:oceanMove 5s linear infinite}
-@keyframes oceanMove{to{background-position:80px 0}}
-.mountains{position:absolute;left:0;right:0;bottom:36%;height:28%;background:#344e4a;clip-path:polygon(0 100%,0 58%,9% 37%,18% 67%,29% 26%,40% 65%,52% 20%,64% 60%,76% 34%,87% 67%,100% 27%,100% 100%);opacity:.9}
-.road{position:absolute;left:-8%;right:-8%;bottom:-10%;height:48%;background:linear-gradient(105deg,#1f2422,#454945 50%,#202522);clip-path:polygon(21% 0,79% 0,100% 100%,0 100%);overflow:hidden;z-index:2}
-.road:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0c100f88,transparent 28%,transparent 72%,#0c100f88)}
-.road-lines{position:absolute;left:0;right:0;top:8%;bottom:0;background:repeating-linear-gradient(90deg,transparent 0 9vw,#eadba8 9vw 10vw,transparent 10vw 20vw);transform:perspective(420px) rotateX(58deg) scaleY(2.3);transform-origin:top;opacity:.8;animation:roadMove .55s linear infinite}
-@keyframes roadMove{to{background-position:0 18vw}}
-.car-wrap{position:absolute;left:50%;top:27%;width:min(1050px,82vw);transform:translateX(-50%);z-index:5;filter:drop-shadow(0 25px 28px #0009);animation:carDrive 1.6s ease-in-out infinite}
-.car-wrap img{display:block;width:100%;height:auto;object-fit:contain}
-@keyframes carDrive{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
-.topbar{position:absolute;left:4vw;right:4vw;top:3vh;display:flex;justify-content:space-between;z-index:10}
-.brand{font-weight:900;font-size:18px;line-height:.8;letter-spacing:.06em;text-shadow:0 2px 8px #0006}.brand span{color:#f0c979}
-.caption{font-size:9px;letter-spacing:.18em;opacity:.75;margin-top:4px}
-.intro{position:absolute;left:5vw;bottom:8vh;z-index:10;text-shadow:0 3px 20px #0009}.intro p{font-size:10px;letter-spacing:.25em;font-weight:700}.intro h1{font-family:Georgia,serif;font-size:clamp(38px,5.5vw,78px);line-height:.88;margin:10px 0;font-weight:500}.intro span{font-family:cursive;font-size:20px;color:#ffe0a2}
-.audio-button{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);z-index:25;border:1px solid #fff8;background:#151714ed;color:#f7ead1;border-radius:999px;min-width:180px;height:58px;padding:0 24px;cursor:pointer;box-shadow:0 12px 40px #0009;backdrop-filter:blur(10px);font-size:11px;font-weight:700;letter-spacing:.13em;display:flex;align-items:center;justify-content:center;gap:10px}
-.audio-button .speaker{font-size:24px;color:#f0c979}
-.audio-panel{position:absolute;left:50%;bottom:12vh;width:min(410px,90vw);z-index:30;background:#181713f7;border:1px solid #fff3;padding:16px;box-shadow:0 25px 80px #000a;backdrop-filter:blur(14px);transform:translate(-50%,20px) scale(.96);opacity:0;pointer-events:none;transition:.3s ease}.audio-panel.open{opacity:1;transform:translate(-50%,0);pointer-events:auto}
-.panel-head{display:flex;justify-content:space-between;gap:12px}.panel-head small{font-size:8px;letter-spacing:.18em;color:#e9c77d}.panel-head h2{font-family:Georgia,serif;font-weight:500;font-size:25px;margin:7px 0 2px}.panel-head p{font-size:11px;opacity:.55;margin:0}.panel-head button{background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
-.art{height:150px;margin:14px 0;overflow:hidden}.art img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.82)}
-.player{display:flex;align-items:center;gap:10px}.play{width:48px;height:48px;border:0;border-radius:50%;background:#edc878;color:#17130f;font-size:18px;cursor:pointer}.player>button:last-child{background:none;border:0;color:#fff;cursor:pointer;font-size:18px}.trackbar{flex:1}.trackbar input{width:100%;accent-color:#edc878}.times{display:flex;justify-content:space-between;font-size:8px;opacity:.55}.audio-panel #status{text-align:center;font-size:8px;letter-spacing:.15em;color:#eac67c;margin-top:9px}
-.hint{position:absolute;bottom:1.5vh;right:4vw;z-index:10;font-size:8px;letter-spacing:.16em;opacity:.55}
-@media(max-width:700px){.car-wrap{width:118vw;top:31%}.mountains{bottom:38%}.ocean{bottom:29%;height:34%}.intro{bottom:14vh}.intro h1{font-size:46px}.caption{display:none}.audio-button{bottom:4vh}.audio-panel{bottom:12vh}.hint{display:none}}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#090b0b}
+body{font-family:Arial,sans-serif;color:#fff}
+.hero{position:relative;width:100vw;height:100vh;height:100svh;overflow:hidden;background:#111}
+.hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.play-area{position:absolute;z-index:5;left:50%;bottom:4.2vh;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+.play-button{width:78px;height:78px;border-radius:50%;border:1.5px solid #ffd36a;background:rgba(10,10,8,.72);color:#fff1bd;box-shadow:0 0 0 1px #0005,0 8px 35px #0009,0 0 30px #e9a82d55;cursor:pointer;font-size:28px;display:grid;place-items:center;transition:transform .2s,background .2s}
+.play-button:hover{transform:scale(1.06);background:rgba(20,18,12,.86)}
+.play-button:active{transform:scale(.97)}
+#playIcon{margin-left:4px}
+.play-label{margin-top:9px;color:#ffd36a;font-size:11px;font-weight:700;letter-spacing:.25em;text-shadow:0 2px 8px #000}
+.player{width:min(430px,86vw);margin-top:14px;padding:14px 16px;background:rgba(8,9,8,.84);border:1px solid #fff3;box-shadow:0 18px 50px #0009;backdrop-filter:blur(12px);border-radius:4px;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s ease}
+.player.open{opacity:1;transform:none;pointer-events:auto}
+.song-title{font-family:Georgia,serif;font-size:21px}
+.song-artist{font-size:11px;opacity:.6;margin-top:3px}
+.controls{display:flex;align-items:center;gap:8px;margin-top:10px}
+.controls button{border:0;background:none;color:#fff;cursor:pointer;font-size:17px;padding:0}
+.controls input{flex:1;accent-color:#ffd36a}
+.controls span{font-size:10px;opacity:.65;min-width:32px;text-align:right}
+.status{text-align:center;color:#ffd36a;font-size:8px;letter-spacing:.18em;margin-top:8px}
+@media(max-width:700px){
+ .hero-image{object-position:center}
+ .play-area{bottom:3.5vh}
+ .play-button{width:70px;height:70px}
+ .player{width:88vw}
+}
