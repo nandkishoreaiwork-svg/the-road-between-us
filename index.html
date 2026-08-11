@@ -3,107 +3,69 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Road Wala Radio — The Road Between Us</title>
-<meta name="description" content="A tiny Indian road-trip radio for the songs that made the journey.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Road Wala Radio</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="grain"></div>
+<main class="scene">
+  <div class="sky"></div>
+  <div class="sun"></div>
+  <div class="mountains"></div>
 
-<main class="app">
-  <section class="hero">
-    <div class="bg"></div>
-    <div class="vignette"></div>
+  <div class="road">
+    <div class="road-lines"></div>
+    <div class="car-wrap">
+      <img src="./assets/friends-coastal-highway.png" alt="Three friends driving on a coastal highway">
+    </div>
+  </div>
 
-    <header class="top">
-      <div class="logo">ROAD<br><span>WALA</span><br>RADIO</div>
-      <div class="live"><i></i> LIVE FROM THE HIGHWAY</div>
-    </header>
+  <div class="topbar">
+    <div class="brand">ROAD WALA<br><span>RADIO</span></div>
+    <div class="caption">THREE FRIENDS · ONE ROAD · NO PLAN</div>
+  </div>
 
-    <div class="intro">
-      <p class="eyebrow">BEFORE SPOTIFY. BEFORE PLAYLISTS.</p>
-      <h1>Some songs<br>were made<br><em>for the road.</em></h1>
-      <p class="sub">You know that one song that makes the highway feel longer, the sunset feel closer, and the people in the car feel like home?</p>
-      <button id="start" class="big-play">▶ <span>START THE RIDE</span></button>
+  <div class="intro">
+    <p>THE LONG WAY HOME</p>
+    <h1>Windows down.<br>Music up.</h1>
+    <span>Some roads become memories.</span>
+  </div>
+
+  <button class="audio-button" id="audioButton" aria-label="Open audio menu">
+    <span class="speaker">♪</span>
+    <span>AUDIO</span>
+  </button>
+
+  <section class="audio-panel" id="audioPanel" aria-hidden="true">
+    <div class="panel-head">
+      <div>
+        <small>ROAD RADIO 001</small>
+        <h2>Khaabon Ke Parinday</h2>
+        <p>Mohit Chauhan · Alyssa Mendonsa</p>
+      </div>
+      <button id="closeAudio">×</button>
     </div>
 
-    <div class="radio">
-      <div class="radio-head">
-        <span>ROAD RADIO 001</span>
-        <span id="status">READY</span>
-      </div>
+    <div class="art">
+      <img src="./assets/friends-coastal-highway.png" alt="">
+    </div>
 
-      <div class="art">
-        <img id="art" src="./assets/friends-coastal-highway.png" alt="Three friends on a coastal road">
-        <div class="art-label">THE LONG WAY</div>
-      </div>
+    <audio id="audio" preload="auto" playsinline>
+      <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
+    </audio>
 
-      <div class="track">
-        <div class="track-meta">
-          <small id="mood">ROAD TRIP</small>
-          <h2 id="title">Khaabon Ke Parinday</h2>
-          <p id="artist">Mohit Chauhan · Alyssa Mendonsa</p>
-        </div>
-        <div class="visualizer" id="visualizer">
-          <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
-        </div>
-      </div>
-
-      <audio id="audio" preload="auto" playsinline>
-        <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
-      </audio>
-
-      <div class="progress">
-        <span id="current">0:00</span>
+    <div class="player">
+      <button id="play" class="play">▶</button>
+      <div class="trackbar">
         <input id="seek" type="range" min="0" max="100" value="0">
-        <span id="duration">0:00</span>
+        <div class="times"><span id="current">0:00</span><span id="duration">0:00</span></div>
       </div>
-
-      <div class="controls">
-        <button id="prev" title="Previous">◀◀</button>
-        <button id="play" class="main">▶</button>
-        <button id="next" title="Next">▶▶</button>
-      </div>
-
-      <div class="lower">
-        <button id="shuffle">SHUFFLE THE ROAD</button>
-        <button id="mute">SOUND ON</button>
-      </div>
+      <button id="mute">🔊</button>
     </div>
-
-    <div class="memory">
-      <span>MEMORY OF THE DAY</span>
-      <p id="memory">"Windows down. Music up. Nobody asks where we're going."</p>
-    </div>
-
-    <div class="scroll">SCROLL FOR THE STORY ↓</div>
+    <div id="status">PRESS PLAY</div>
   </section>
 
-  <section class="story">
-    <div class="story-inner">
-      <p class="eyebrow">THE IDEA</p>
-      <h2>Before you became<br><span>fancy.</span></h2>
-      <p class="big-copy">
-        There was a time when you didn't need a perfectly curated playlist.
-        Someone in the car had a pen drive. Someone knew the next song.
-        And somehow, a random highway became a memory.
-      </p>
-
-      <div class="memory-grid">
-        <article><span>01</span><h3>ONE SONG</h3><p>The one everybody knows. The one nobody skips.</p></article>
-        <article><span>02</span><h3>ONE ROAD</h3><p>No itinerary. Just keep driving until the view changes.</p></article>
-        <article><span>03</span><h3>THREE FRIENDS</h3><p>Different lives. Same car. Same stupid jokes.</p></article>
-      </div>
-
-      <button id="rideAgain" class="outline">← BACK TO THE RADIO</button>
-    </div>
-  </section>
+  <div class="hint">DRAG THE SCREEN · TAKE THE LONG WAY</div>
 </main>
-
-<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body>
 </html>
