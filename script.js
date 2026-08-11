@@ -211,3 +211,30 @@ const localAudio = document.getElementById("roadAudio");
 localAudio?.addEventListener("error",()=>{
   toast("Audio file not found — check the assets folder.");
 });
+
+/* FINAL JOURNEY FLOW */
+const galleryNextFinal=document.getElementById("galleryNext");
+if(galleryNextFinal) galleryNextFinal.onclick=()=>show("journeyCard");
+
+const finalJourneyBtn=document.getElementById("finalJourneyBtn");
+if(finalJourneyBtn) finalJourneyBtn.onclick=()=>{
+  const d=document.getElementById("cardDestination"); if(d)d.textContent=state.place.toUpperCase();
+  const km=document.getElementById("cardDistance"); if(km)km.textContent=state.distance+" KM";
+  show("final");
+};
+
+const copyJourney=document.getElementById("copyJourney");
+if(copyJourney) copyJourney.onclick=async()=>{
+  const text=`MY ROAD TRIP — Mumbai → ${state.place}. ${state.distance} KM. 3 friends. Some roads become memories.`;
+  try{await navigator.clipboard.writeText(text);toast("Journey text copied.");}
+  catch(e){toast("Select and copy the journey text.");}
+};
+
+const soundToggle=document.getElementById("soundToggle");
+if(soundToggle && nativeAudio){
+  soundToggle.onclick=()=>{
+    nativeAudio.muted=!nativeAudio.muted;
+    soundToggle.textContent=nativeAudio.muted?"UNMUTE":"MUTE";
+    toast(nativeAudio.muted?"Radio muted":"Radio unmuted");
+  };
+}

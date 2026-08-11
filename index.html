@@ -87,7 +87,7 @@
           <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
           Your browser does not support audio.
         </audio><div class="radio-controls"><button id="prev">◀</button><button id="play">▶</button><button id="next">▶▶</button></div>
-          <div class="radio-actions"><button id="moodBtn">CHANGE MOOD</button><button id="detourBtn">RANDOM DETOUR</button></div>
+          <div class="radio-actions"><button id="moodBtn">CHANGE MOOD</button><button id="detourBtn">RANDOM DETOUR</button><button id="soundToggle">MUTE</button></div>
         </div>
         <div class="drive-copy"><span id="driveTime">08:12 AM</span><p id="driveQuote">Windows down. Music up.</p></div>
       </div>
@@ -118,7 +118,34 @@
         <figure class="gallery-card"><img src="https://images.pexels.com/photos/33793098/pexels-photo-33793098.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Friends at a Goa beach sunset" loading="lazy"><figcaption><b>THE CREW</b><span>Somewhere near the sea</span></figcaption></figure>
         <figure class="gallery-card wide"><img src="https://images.pexels.com/photos/34320409/pexels-photo-34320409.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Goa beach sunset" loading="lazy"><figcaption><b>GOA</b><span>Stay until the sky turns gold</span></figcaption></figure>
       </div>
-      <button class="primary gallery-next" id="galleryNext">END THE JOURNEY →</button>
+      <button class="primary gallery-next" id="galleryNext">SEE MY JOURNEY →</button>
+    </section>
+
+
+    <section id="journeyCard" class="screen journey-card-screen">
+      <div class="journey-card-wrap">
+        <p class="eyebrow">YOUR TRIP, IN ONE FRAME</p>
+        <h2>MY ROAD TRIP</h2>
+        <div class="trip-card">
+          <div class="trip-card-top">
+            <span>ROAD TRIP #001</span><span id="cardMood">UNPLANNED</span>
+          </div>
+          <div class="trip-route">
+            <span>MUMBAI</span><b>→</b><span id="cardDestination">GOA</span>
+          </div>
+          <div class="trip-stats">
+            <div><small>CREW</small><b>3 FRIENDS</b></div>
+            <div><small>DISTANCE</small><b id="cardDistance">590 KM</b></div>
+            <div><small>MEMORIES</small><b id="cardMemories">7</b></div>
+          </div>
+          <p class="trip-quote">"Some roads become memories."</p>
+          <div class="trip-card-photo"><img src="./assets/friends-coastal-highway.png" alt="Three friends on a coastal road"></div>
+        </div>
+        <div class="journey-actions">
+          <button class="primary" id="finalJourneyBtn">SEE THE LAST SUNSET →</button>
+          <button class="ghost" id="copyJourney">COPY JOURNEY TEXT</button>
+        </div>
+      </div>
     </section>
 
     <section id="final" class="screen final-screen">
