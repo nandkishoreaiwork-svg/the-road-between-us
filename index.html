@@ -80,9 +80,9 @@
           <div><span>DESTINATION</span><b id="dashDest">GOA</b><small>ROAD TRIP</small></div>
         </div>
         <div class="radio">
-          <div class="radio-title">ROAD RADIO <span id="radioLight">●</span></div>
+          <div class="radio-title">ROAD RADIO <span id="radioLight">●</span></div><audio id="roadAudio" preload="metadata"><source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg"></audio>
           <div class="radio-art"><img id="radioArtwork" src="./assets/friends-coastal-highway.png" alt="Road trip radio artwork"></div><div class="radio-screen"><small id="trackMood">ROAD TRIP</small><strong id="trackTitle">Khaabon Ke Parinday</strong><span id="trackArtist">Mohit Chauhan, Alyssa Mendonsa</span></div>
-          <div class="radio-controls"><button id="prev">◀</button><button id="play">▶</button><button id="next">▶▶</button></div>
+          <div class="radio-progress"><input id="audioProgress" type="range" min="0" max="100" value="0" aria-label="Song progress"></div><div class="radio-time"><span id="currentTime">0:00</span><span id="duration">0:00</span></div><div class="radio-controls"><button id="prev">◀</button><button id="play">▶</button><button id="next">▶▶</button></div>
           <div class="radio-actions"><button id="moodBtn">CHANGE MOOD</button><button id="detourBtn">RANDOM DETOUR</button></div>
         </div>
         <div class="drive-copy"><span id="driveTime">08:12 AM</span><p id="driveQuote">Windows down. Music up.</p></div>

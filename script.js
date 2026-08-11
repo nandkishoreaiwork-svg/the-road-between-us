@@ -56,9 +56,30 @@ $("#engineBtn").onclick=()=>{if(state.selected.length===3){show("drive");startDr
 function updateSong(){
  const s=songs[state.song];$("#trackTitle").textContent=s.title;$("#trackArtist").textContent=s.artist;$("#trackMood").textContent=s.mood;state.mood=s.mood;if($("#radioArtwork"))$("#radioArtwork").src=s.artwork||"./assets/friends-coastal-highway.png";
 }
-$("#next").onclick=()=>{state.song=(state.song+1)%songs.length;updateSong();toast("Next banger loaded.");};
-$("#prev").onclick=()=>{state.song=(state.song-1+songs.length)%songs.length;updateSong();};
-$("#play").onclick=()=>{state.playing=!state.playing;$("#play").textContent=state.playing?"Ⅱ":"▶";toast(state.playing?"ROAD RADIO: ON":"ROAD RADIO: PAUSED")};
+$("#next").onclick=()=>{state.song=(state.song+1)%songs.length;updateSong();if(roadAudio){roadAudio.currentTime=0;if(state.playing)roadAudio.play().catch(()=>{});}toast("Next banger loaded.");};
+$("#prev").onclick=()=>{state.song=(state.song-1+songs.length)%songs.length;updateSong();if(roadAudio){roadAudio.currentTime=0;if(state.playing)roadAudio.play().catch(()=>{});}};
+const roadAudio=$("#roadAudio");
+$("#play").onclick=async()=>{
+  if(!roadAudio)return;
+  try{
+    if(roadAudio.paused){await roadAudio.play();state.playing=true;$("#play").textContent="Ⅱ";toast("Khaabon Ke Parinday: PLAYING");}
+    else{roadAudio.pause();state.playing=false;$("#play").textContent="▶";toast("ROAD RADIO: PAUSED");}
+  }catch(e){toast("Press PLAY again to start the audio.");}
+};
+roadAudio?.addEventListener("play",()=>{state.playing=true;$("#play").textContent="Ⅱ"});
+roadAudio?.addEventListener("pause",()=>{state.playing=false;$("#play").textContent="▶"});
+roadAudio?.addEventListener("ended",()=>{state.playing=false;$("#play").textContent="▶";toast("Song finished.");});
+roadAudio?.addEventListener("loadedmetadata",()=>{$("#duration").textContent=formatTime(roadAudio.duration)});
+roadAudio?.addEventListener("timeupdate",()=>{
+  if(roadAudio.duration){
+    $("#audioProgress").value=(roadAudio.currentTime/roadAudio.duration)*100;
+    $("#currentTime").textContent=formatTime(roadAudio.currentTime);
+  }
+});
+$("#audioProgress")?.addEventListener("input",e=>{
+  if(roadAudio.duration) roadAudio.currentTime=(Number(e.target.value)/100)*roadAudio.duration;
+});
+function formatTime(sec){if(!Number.isFinite(sec))return "0:00";const m=Math.floor(sec/60),s=Math.floor(sec%60);return `${m}:${String(s).padStart(2,"0")}`;}
 $("#moodBtn").onclick=()=>{const moods=["FRIENDSHIP","FULL BANGER","GOA","SUNSET","HEARTBREAK","ROMANCE","LATE NIGHT"];const m=moods[Math.floor(Math.random()*moods.length)];let i=songs.findIndex(s=>s.mood===m);if(i<0)i=0;state.song=i;updateSong();toast("Mood: "+m)};
 const detours=[
  ["CHAI STOP","Everyone needs chai."],

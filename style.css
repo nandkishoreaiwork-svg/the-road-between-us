@@ -121,3 +121,8 @@
 .radio-art img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) sepia(.12)}
 
 .music-note{position:fixed;right:12px;bottom:8px;z-index:30;font-size:9px;opacity:.45;max-width:280px;text-align:right}
+
+#roadAudio{display:none}
+.radio-progress{margin:8px 0 0}
+.radio-progress input{width:100%;accent-color:#e6c27c;cursor:pointer}
+.radio-time{display:flex;justify-content:space-between;font-size:.55rem;color:#bfb18f;margin-top:2px}
