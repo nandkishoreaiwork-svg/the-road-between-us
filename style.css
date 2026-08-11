@@ -126,3 +126,6 @@
 .radio-time{display:flex;justify-content:space-between;font-size:.55rem;color:#bfb18f;margin-top:2px}
 
 .audio-status{font-size:.52rem;letter-spacing:.14em;color:#d9c68d;text-align:center;margin:6px 0;opacity:.8}
+
+#nativeAudio{display:block;width:100%;height:34px;margin:8px 0 4px;filter:none}
+#nativeAudio::-webkit-media-controls-panel{background:#c9bd83}

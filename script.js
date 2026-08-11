@@ -59,99 +59,55 @@ function updateSong(){
 $("#next").onclick=()=>{state.song=(state.song+1)%songs.length;updateSong();if(roadAudio){roadAudio.currentTime=0;if(state.playing)roadAudio.play().catch(()=>{});}toast("Next banger loaded.");};
 $("#prev").onclick=()=>{state.song=(state.song-1+songs.length)%songs.length;updateSong();if(roadAudio){roadAudio.currentTime=0;if(state.playing)roadAudio.play().catch(()=>{});}};
 const roadAudio=document.getElementById("roadAudio");
+const nativeAudio=document.getElementById("nativeAudio");
 const audioStatus=document.getElementById("audioStatus");
-const audioProgress=document.getElementById("audioProgress");
 
-if(roadAudio){
-  // Explicitly set the local GitHub Pages path.
-  roadAudio.src="./assets/khaabon-ke-parinday.mp3";
-  roadAudio.load();
+if(nativeAudio){
+  nativeAudio.addEventListener("play",()=>{
+    state.playing=true;
+    if($("#play"))$("#play").textContent="Ⅱ";
+    if(audioStatus)audioStatus.textContent="PLAYING • KHAABON KE PARINDAY";
+  });
+  nativeAudio.addEventListener("pause",()=>{
+    state.playing=false;
+    if($("#play"))$("#play").textContent="▶";
+    if(audioStatus)audioStatus.textContent="PAUSED";
+  });
+  nativeAudio.addEventListener("ended",()=>{
+    state.playing=false;
+    if($("#play"))$("#play").textContent="▶";
+    if(audioStatus)audioStatus.textContent="SONG FINISHED";
+  });
+  nativeAudio.addEventListener("error",()=>{
+    if(audioStatus)audioStatus.textContent="AUDIO LOAD ERROR";
+  });
 }
 
-function setAudioStatus(text){
-  if(audioStatus) audioStatus.textContent=text;
-}
-
-$("#play").onclick=async()=>{
-  if(!roadAudio){setAudioStatus("AUDIO ELEMENT MISSING");return;}
-  try{
-    if(roadAudio.paused){
-      await roadAudio.play();
-      state.playing=true;
-      $("#play").textContent="Ⅱ";
-      setAudioStatus("PLAYING • KHAABON KE PARINDAY");
-    }else{
-      roadAudio.pause();
-      state.playing=false;
-      $("#play").textContent="▶";
-      setAudioStatus("PAUSED");
-    }
-  }catch(error){
-    console.error(error);
-    setAudioStatus("CHECK MP3 IN /assets/");
-    toast("The MP3 is not loading. Check your GitHub assets folder.");
+$("#play").onclick=()=>{
+  if(!nativeAudio)return;
+  if(nativeAudio.paused){
+    nativeAudio.play().catch(err=>{
+      console.error(err);
+      if(audioStatus)audioStatus.textContent="PRESS THE NATIVE PLAY BUTTON";
+      toast("Click the small PLAY button under the radio display.");
+    });
+  }else{
+    nativeAudio.pause();
   }
 };
 
 $("#next").onclick=()=>{
   state.song=(state.song+1)%songs.length;
   updateSong();
-  if(roadAudio){
-    roadAudio.currentTime=0;
-    if(state.playing) roadAudio.play().catch(()=>{});
-  }
+  if(nativeAudio){nativeAudio.currentTime=0;}
   toast("Next banger loaded.");
 };
-
 $("#prev").onclick=()=>{
   state.song=(state.song-1+songs.length)%songs.length;
   updateSong();
-  if(roadAudio){
-    roadAudio.currentTime=0;
-    if(state.playing) roadAudio.play().catch(()=>{});
-  }
+  if(nativeAudio){nativeAudio.currentTime=0;}
 };
 
-roadAudio?.addEventListener("play",()=>{
-  state.playing=true;
-  $("#play").textContent="Ⅱ";
-  setAudioStatus("PLAYING • KHAABON KE PARINDAY");
-});
-roadAudio?.addEventListener("pause",()=>{
-  state.playing=false;
-  $("#play").textContent="▶";
-  if(roadAudio.currentTime>0 && !roadAudio.ended) setAudioStatus("PAUSED");
-});
-roadAudio?.addEventListener("ended",()=>{
-  state.playing=false;
-  $("#play").textContent="▶";
-  setAudioStatus("SONG FINISHED");
-});
-roadAudio?.addEventListener("loadedmetadata",()=>{
-  if($("#duration")) $("#duration").textContent=formatTime(roadAudio.duration);
-  setAudioStatus("READY TO PLAY");
-});
-roadAudio?.addEventListener("error",()=>{
-  setAudioStatus("MP3 NOT FOUND");
-  toast("Upload khaabon-ke-parinday.mp3 inside assets.");
-});
-roadAudio?.addEventListener("canplay",()=>{
-  setAudioStatus("READY TO PLAY");
-});
-roadAudio?.addEventListener("timeupdate",()=>{
-  if(roadAudio.duration){
-    if(audioProgress) audioProgress.value=(roadAudio.currentTime/roadAudio.duration)*100;
-    if($("#currentTime")) $("#currentTime").textContent=formatTime(roadAudio.currentTime);
-  }
-});
-audioProgress?.addEventListener("input",e=>{
-  if(roadAudio.duration) roadAudio.currentTime=(Number(e.target.value)/100)*roadAudio.duration;
-});
-function formatTime(sec){
-  if(!Number.isFinite(sec))return "0:00";
-  const m=Math.floor(sec/60),s=Math.floor(sec%60);
-  return `${m}:${String(s).padStart(2,"0")}`;
-}
 $("#moodBtn").onclick=()=>{const moods=["FRIENDSHIP","FULL BANGER","GOA","SUNSET","HEARTBREAK","ROMANCE","LATE NIGHT"];const m=moods[Math.floor(Math.random()*moods.length)];let i=songs.findIndex(s=>s.mood===m);if(i<0)i=0;state.song=i;updateSong();toast("Mood: "+m)};
 const detours=[
  ["CHAI STOP","Everyone needs chai."],
