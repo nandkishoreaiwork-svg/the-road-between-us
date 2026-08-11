@@ -8,7 +8,7 @@ const places={
  Manali:{distance:530,line:"Cold roads. Warm company."}
 };
 const songs=[
- {title:"Dil Chahta Hai",artist:"Road Trip Radio",mood:"FRIENDSHIP"},
+ {title:"Khaabon Ke Parinday",artist:"Mohit Chauhan, Alyssa Mendonsa",mood:"ROAD TRIP",artwork:"./assets/friends-coastal-highway.png"},
  {title:"Koi Kahe Kehta Rahe",artist:"Road Trip Radio",mood:"FULL BANGER"},
  {title:"Woh Ladki Hai Kahan",artist:"Road Trip Radio",mood:"GOA"},
  {title:"Kaisi Hai Ye Rut",artist:"Road Trip Radio",mood:"SUNSET"},
@@ -54,7 +54,7 @@ $$(".items button").forEach(b=>b.onclick=()=>{
 $("#packBtn").onclick=()=>show("pack");
 $("#engineBtn").onclick=()=>{if(state.selected.length===3){show("drive");startDrive()}};
 function updateSong(){
- const s=songs[state.song];$("#trackTitle").textContent=s.title;$("#trackArtist").textContent=s.artist;$("#trackMood").textContent=s.mood;state.mood=s.mood;
+ const s=songs[state.song];$("#trackTitle").textContent=s.title;$("#trackArtist").textContent=s.artist;$("#trackMood").textContent=s.mood;state.mood=s.mood;if($("#radioArtwork"))$("#radioArtwork").src=s.artwork||"./assets/friends-coastal-highway.png";
 }
 $("#next").onclick=()=>{state.song=(state.song+1)%songs.length;updateSong();toast("Next banger loaded.");};
 $("#prev").onclick=()=>{state.song=(state.song-1+songs.length)%songs.length;updateSong();};
