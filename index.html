@@ -1,169 +1,109 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Road Between Us — An Indian Road Trip</title>
-  <meta name="description" content="Three friends. One road. Infinite memories. An interactive Indian road-trip experience." />
-  <meta property="og:title" content="The Road Between Us" />
-  <meta property="og:description" content="Three friends. One road. Infinite memories." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Road Wala Radio — The Road Between Us</title>
+<meta name="description" content="A tiny Indian road-trip radio for the songs that made the journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="grain"></div>
-  <div id="app">
-    <section id="hero" class="screen hero-screen active">
-      <div class="sky"></div><div class="sun"></div>
-      <div class="road-road"></div>
-      <div class="hero-car" aria-hidden="true"><div class="car-body"></div><div class="wheel w1"></div><div class="wheel w2"></div></div>
-      <div class="hero-copy">
-        <p class="eyebrow">AN ORIGINAL ROAD-TRIP EXPERIENCE</p>
-        <h1>THE ROAD<br><span>BETWEEN US</span></h1>
-        <p class="tagline">Three friends. One road. Infinite memories.</p>
-        <button class="primary" data-next="crew">START THE JOURNEY <span>→</span></button>
-        <small>Destination: Unknown</small>
-      </div>
-      <div class="scroll-hint">SCROLL / DRIVE</div>
-    </section>
+<div class="grain"></div>
 
-    <section id="crew" class="screen panel-screen">
-      <div class="topbar"><span>01 / THE CREW</span><button class="ghost back">← BACK</button></div>
-      <div class="section-head"><p class="eyebrow">WHO'S COMING?</p><h2>Pick your crew.</h2><p>Every road trip needs three people: one who plans, one who ruins the plan, and one who stares out the window.</p></div>
-      <div class="cards crew-grid">
-        <button class="crew-card" data-crew="planner"><span class="number">01</span><div class="avatar avatar-a">⌁</div><h3>THE PLANNER</h3><p>Has the map. Has the hotel booking. Nobody listens.</p></button>
-        <button class="crew-card" data-crew="chaos"><span class="number">02</span><div class="avatar avatar-b">✦</div><h3>THE CHAOS</h3><p>Doesn't know the destination. Always knows the next song.</p></button>
-        <button class="crew-card" data-crew="dreamer"><span class="number">03</span><div class="avatar avatar-c">☼</div><h3>THE DREAMER</h3><p>Window seat. Headphones. Probably thinking about something.</p></button>
-      </div>
-      <button class="primary next-hidden" id="crewNext">CHOOSE A DESTINATION →</button>
-    </section>
+<main class="app">
+  <section class="hero">
+    <div class="bg"></div>
+    <div class="vignette"></div>
 
-    <section id="destination" class="screen panel-screen">
-      <div class="topbar"><span>02 / THE ROUTE</span><button class="ghost back">← BACK</button></div>
-      <div class="section-head"><p class="eyebrow">WHERE TO?</p><h2>Take the long way.</h2></div>
-      <div class="map-wrap">
-        <div class="map-grid"></div>
-        <svg class="route" viewBox="0 0 800 420" preserveAspectRatio="none">
-          <path d="M80 320 C210 270 190 150 330 185 S540 330 700 100" />
-        </svg>
-        <button class="map-pin pin-mumbai" data-place="Mumbai"><b>MUMBAI</b><small>THE START</small></button>
-        <button class="map-pin pin-pune" data-place="Pune"><b>PUNE</b><small>ONE MORE CHAI</small></button>
-        <button class="map-pin pin-gokarna" data-place="Gokarna"><b>GOKARNA</b><small>WRONG TURN</small></button>
-        <button class="map-pin pin-goa selected" data-place="Goa"><b>GOA</b><small>THE LONG WAY</small></button>
-        <button class="map-pin pin-manali" data-place="Manali"><b>MANALI</b><small>COLD ROADS</small></button>
-      </div>
-      <div class="destination-info">
-        <div><span class="label">DESTINATION</span><strong id="destName">GOA</strong></div>
-        <div><span class="label">DISTANCE</span><strong id="destDistance">590 KM</strong></div>
-        <p id="destLine">Beach. Sunset. No return ticket.</p>
-      </div>
-      <button class="primary" id="packBtn">PACK THE CAR →</button>
-    </section>
+    <header class="top">
+      <div class="logo">ROAD<br><span>WALA</span><br>RADIO</div>
+      <div class="live"><i></i> LIVE FROM THE HIGHWAY</div>
+    </header>
 
-    <section id="pack" class="screen panel-screen">
-      <div class="topbar"><span>03 / THE TRUNK</span><button class="ghost back">← BACK</button></div>
-      <div class="section-head"><p class="eyebrow">NO CHECK-IN BAGGAGE</p><h2>Pack three things.</h2><p>Choose what makes the trip feel like yours.</p></div>
-      <div class="items" id="packItems"></div>
-      <div class="selection-status"><span id="packCount">0 / 3 selected</span><button class="primary disabled" id="engineBtn">CLOSE TRUNK →</button></div>
-    </section>
+    <div class="intro">
+      <p class="eyebrow">BEFORE SPOTIFY. BEFORE PLAYLISTS.</p>
+      <h1>Some songs<br>were made<br><em>for the road.</em></h1>
+      <p class="sub">You know that one song that makes the highway feel longer, the sunset feel closer, and the people in the car feel like home?</p>
+      <button id="start" class="big-play">▶ <span>START THE RIDE</span></button>
+    </div>
 
-    <section id="drive" class="screen drive-screen">
-      <div class="drive-sky"></div><div class="mountain m1"></div><div class="mountain m2"></div>
-      <div class="highway"><div class="lane"></div></div>
-      <div class="drive-ui">
-        <div class="dashboard">
-          <div><span>SPEED</span><b id="speed">000</b><small>KM/H</small></div>
-          <div><span>DISTANCE</span><b id="distance">590</b><small>KM TO GO</small></div>
-          <div><span>FUEL</span><b id="fuel">100</b><small>%</small></div>
-          <div><span>DESTINATION</span><b id="dashDest">GOA</b><small>ROAD TRIP</small></div>
+    <div class="radio">
+      <div class="radio-head">
+        <span>ROAD RADIO 001</span>
+        <span id="status">READY</span>
+      </div>
+
+      <div class="art">
+        <img id="art" src="./assets/friends-coastal-highway.png" alt="Three friends on a coastal road">
+        <div class="art-label">THE LONG WAY</div>
+      </div>
+
+      <div class="track">
+        <div class="track-meta">
+          <small id="mood">ROAD TRIP</small>
+          <h2 id="title">Khaabon Ke Parinday</h2>
+          <p id="artist">Mohit Chauhan · Alyssa Mendonsa</p>
         </div>
-        <div class="radio">
-          <div class="radio-title">ROAD RADIO <span id="radioLight">●</span></div><audio id="roadAudio" preload="auto" playsinline><source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg"></audio>
-          <div class="radio-art"><img id="radioArtwork" src="./assets/friends-coastal-highway.png" alt="Road trip radio artwork"></div><div class="radio-screen"><small id="trackMood">ROAD TRIP</small><strong id="trackTitle">Khaabon Ke Parinday</strong><span id="trackArtist">Mohit Chauhan, Alyssa Mendonsa</span></div>
-          <div class="radio-progress"><input id="audioProgress" type="range" min="0" max="100" value="0" aria-label="Song progress"></div><div class="radio-time"><span id="currentTime">0:00</span><span id="duration">0:00</span></div><div class="audio-status" id="audioStatus">PRESS PLAY TO START</div>
-        <audio id="nativeAudio" controls preload="auto" playsinline>
-          <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
-          Your browser does not support audio.
-        </audio><div class="radio-controls"><button id="prev">◀</button><button id="play">▶</button><button id="next">▶▶</button></div>
-          <div class="radio-actions"><button id="moodBtn">CHANGE MOOD</button><button id="detourBtn">RANDOM DETOUR</button><button id="soundToggle">MUTE</button></div>
-        </div>
-        <div class="drive-copy"><span id="driveTime">08:12 AM</span><p id="driveQuote">Windows down. Music up.</p></div>
-      </div>
-      <div class="detour" id="detourModal">
-        <div class="detour-card"><button class="close" id="closeDetour">×</button><span class="eyebrow">ROAD TRIP DETOUR</span><h2 id="detourTitle">CHAI STOP</h2><p id="detourText">Everyone needs chai.</p><div class="detour-actions"><button class="primary" id="stopHere">STOP HERE</button><button class="ghost" id="keepDriving">KEEP DRIVING</button></div></div>
-      </div>
-    </section>
-
-    <section id="memory" class="screen memory-screen">
-      <div class="memory-photo">
-        <div class="photo-sky"></div><div class="photo-road"></div>
-        <div class="photo-stamp">ROAD TRIP<br>#001</div>
-        <div class="photo-caption"><span id="photoPlace">GOA</span><b id="photoTime">11:47 PM</b></div>
-      </div>
-      <div class="memory-copy"><p class="eyebrow">THE MEMORY</p><h2>Things we didn't plan.</h2><p id="memoryText">Got completely lost. Found the best sunset.</p><button class="primary" id="saveMemory">SAVE THIS MEMORY →</button><button class="ghost" id="finishTrip">SEE THE REAL MOMENTS →</button></div>
-    </section>
-
-
-    <section id="gallery" class="photo-gallery screen">
-      <div class="gallery-head">
-        <p class="eyebrow">REAL ROADS. REAL MOMENTS.</p>
-        <h2>THE TRIP LOOKS BETTER<br><span>WHEN IT FEELS REAL.</span></h2>
-        <p>Real travel photography anchors the fictional journey: highway light, roadside chai, friends and the Goa coast.</p>
-      </div>
-      <div class="gallery-grid">
-        <figure class="gallery-card large"><img src="https://images.pexels.com/photos/34775711/pexels-photo-34775711.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Road trip highway at sunset" loading="lazy"><figcaption><b>THE LONG WAY</b><span>Golden-hour highway</span></figcaption></figure>
-        <figure class="gallery-card"><img src="https://images.pexels.com/photos/18413481/pexels-photo-18413481.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Indian chai stall" loading="lazy"><figcaption><b>CHAI STOP</b><span>₹15 and forty minutes later</span></figcaption></figure>
-        <figure class="gallery-card"><img src="https://images.pexels.com/photos/33793098/pexels-photo-33793098.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Friends at a Goa beach sunset" loading="lazy"><figcaption><b>THE CREW</b><span>Somewhere near the sea</span></figcaption></figure>
-        <figure class="gallery-card wide"><img src="https://images.pexels.com/photos/34320409/pexels-photo-34320409.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Goa beach sunset" loading="lazy"><figcaption><b>GOA</b><span>Stay until the sky turns gold</span></figcaption></figure>
-      </div>
-      <button class="primary gallery-next" id="galleryNext">SEE MY JOURNEY →</button>
-    </section>
-
-
-    <section id="journeyCard" class="screen journey-card-screen">
-      <div class="journey-card-wrap">
-        <p class="eyebrow">YOUR TRIP, IN ONE FRAME</p>
-        <h2>MY ROAD TRIP</h2>
-        <div class="trip-card">
-          <div class="trip-card-top">
-            <span>ROAD TRIP #001</span><span id="cardMood">UNPLANNED</span>
-          </div>
-          <div class="trip-route">
-            <span>MUMBAI</span><b>→</b><span id="cardDestination">GOA</span>
-          </div>
-          <div class="trip-stats">
-            <div><small>CREW</small><b>3 FRIENDS</b></div>
-            <div><small>DISTANCE</small><b id="cardDistance">590 KM</b></div>
-            <div><small>MEMORIES</small><b id="cardMemories">7</b></div>
-          </div>
-          <p class="trip-quote">"Some roads become memories."</p>
-          <div class="trip-card-photo"><img src="./assets/friends-coastal-highway.png" alt="Three friends on a coastal road"></div>
-        </div>
-        <div class="journey-actions">
-          <button class="primary" id="finalJourneyBtn">SEE THE LAST SUNSET →</button>
-          <button class="ghost" id="copyJourney">COPY JOURNEY TEXT</button>
+        <div class="visualizer" id="visualizer">
+          <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
         </div>
       </div>
-    </section>
 
-    <section id="final" class="screen final-screen">
-      <div class="final-sky"></div><div class="final-sea"></div><div class="final-car"></div>
-      <div class="final-copy"><p class="eyebrow">SOMEWHERE BY THE SEA</p><h2>THE BEST PART<br>WAS NEVER<br>THE DESTINATION.</h2><p>It was the people in the car.</p><button class="primary" id="again">TAKE ANOTHER ROAD →</button><button class="ghost" id="share">SHARE THE JOURNEY</button></div>
-    </section>
-  </div>
-  <div class="memory-flash" id="memoryFlash" aria-hidden="true">
-          <div class="memory-flash-inner">
-            <img id="memoryFlashImage" src="./assets/friends-coastal-highway.png" alt="Three friends driving along a coastal highway">
-            <div class="memory-flash-caption">
-              <span>MEMORY FLASH</span>
-              <h2 id="memoryFlashTitle">THE LONG WAY</h2>
-              <p id="memoryFlashText">Nobody knew where we were going.</p>
-            </div>
-          </div>
-        </div>
-        <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+      <audio id="audio" preload="auto" playsinline>
+        <source src="./assets/khaabon-ke-parinday.mp3" type="audio/mpeg">
+      </audio>
+
+      <div class="progress">
+        <span id="current">0:00</span>
+        <input id="seek" type="range" min="0" max="100" value="0">
+        <span id="duration">0:00</span>
+      </div>
+
+      <div class="controls">
+        <button id="prev" title="Previous">◀◀</button>
+        <button id="play" class="main">▶</button>
+        <button id="next" title="Next">▶▶</button>
+      </div>
+
+      <div class="lower">
+        <button id="shuffle">SHUFFLE THE ROAD</button>
+        <button id="mute">SOUND ON</button>
+      </div>
+    </div>
+
+    <div class="memory">
+      <span>MEMORY OF THE DAY</span>
+      <p id="memory">"Windows down. Music up. Nobody asks where we're going."</p>
+    </div>
+
+    <div class="scroll">SCROLL FOR THE STORY ↓</div>
+  </section>
+
+  <section class="story">
+    <div class="story-inner">
+      <p class="eyebrow">THE IDEA</p>
+      <h2>Before you became<br><span>fancy.</span></h2>
+      <p class="big-copy">
+        There was a time when you didn't need a perfectly curated playlist.
+        Someone in the car had a pen drive. Someone knew the next song.
+        And somehow, a random highway became a memory.
+      </p>
+
+      <div class="memory-grid">
+        <article><span>01</span><h3>ONE SONG</h3><p>The one everybody knows. The one nobody skips.</p></article>
+        <article><span>02</span><h3>ONE ROAD</h3><p>No itinerary. Just keep driving until the view changes.</p></article>
+        <article><span>03</span><h3>THREE FRIENDS</h3><p>Different lives. Same car. Same stupid jokes.</p></article>
+      </div>
+
+      <button id="rideAgain" class="outline">← BACK TO THE RADIO</button>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
 </body>
 </html>
